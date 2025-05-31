@@ -7,7 +7,7 @@ const expiresIn = process.env.JWT_EXPIRES;
 if (!key) throw new Error('Missing JWT_KEY in .env');
 
 function signToken(payload) {
-  return jwt.sign(payload, key, { expiresIn });
+  return jwt.sign(payload, key, { expiresIn }); 
 }
 
 function verifyToken(token) {
