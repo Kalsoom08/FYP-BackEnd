@@ -3,7 +3,7 @@ const comparePassword = require('../../Utils/comparePassword');
 const { signToken } = require('../../Utils/JWTGenerator');
 const catchAsync = require('../../Utils/catchAsynch');
 
-const loginAdmin = catchAsync(async (req, res) => {
+const LoginAdmin = catchAsync(async (req, res) => {
     const { userName, password } = req.body;
 
     const admin = await Admin.findOne({ userName });
@@ -29,4 +29,4 @@ const loginAdmin = catchAsync(async (req, res) => {
     });
 });
 
-module.exports = { loginAdmin };
+module.exports = { LoginAdmin };
