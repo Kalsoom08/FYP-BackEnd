@@ -2,17 +2,18 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
-const connectDB = require('./Config/db.js');
+const { connectDB } = require('./Config/db.js');
 require('dotenv').config();
 
 //mport routes there when created
 
 
 //database connection
-connectDB()
+connectDB();
 
 const app = express();
 app.use(express.json());
+
 
 //All routes app middleware there
 
