@@ -16,5 +16,5 @@ app.use(express.json());
 
 //All routes app middleware there
 
-const port = process.env.PORT;
+const port = 7000;
 app.listen(port, () => console.log(`http://localhost:${port} is now running`));
