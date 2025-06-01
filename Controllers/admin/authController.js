@@ -3,7 +3,7 @@ const comparePassword = require('../../Utils/comparePassword');
 const generateToken = require('../../Utils/JWTGenerator');
 
 
-exports.loginAdmin = async (req, res) => {
+const loginAdmin = async (req, res) => {
     try {
         const { userName, password } = req.body;
 
@@ -34,3 +34,5 @@ exports.loginAdmin = async (req, res) => {
         res.status(500).json({ message: 'Login failed', error: err.message });
     }
 };
+
+module.exports = {loginAdmin}
