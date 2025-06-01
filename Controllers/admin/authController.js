@@ -1,20 +1,27 @@
 const Admin = require('../../Models/authModel');
 const comparePassword = require('../../Utils/comparePassword');
-const { signToken } = require('../../Utils/JWTGenerator');
+const {signToken} = require('../../Utils/JWTGenerator');
+
 
 exports.loginAdmin = async (req, res) => {
     try {
         const { userName, password } = req.body;
 
+       
         const admin = await Admin.findOne({ userName });
-        if (!admin) return res.status(400).json({ message: 'Invalid credentials' });
+        if (!admin) {
+            return res.status(400).json({ message: 'Invalid credentials' });
+        }
 
         const isMatch = await comparePassword(password, admin.password);
-        if (!isMatch) return res.status(400).json({ message: 'Invalid credentials' });
+        if (!isMatch) {
+            return res.status(400).json({ message: 'Invalid credentials' });
+        }
 
+        
         const token = signToken({ id: admin._id, role: admin.role });
 
-        res.status(200).json({
+        res.json({
             message: 'Login successful',
             token,
             admin: {
