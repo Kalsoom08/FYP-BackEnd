@@ -2,7 +2,7 @@ const Admin = require('../../Models/authModel');
 const comparePassword = require('../../Utils/comparePassword');
 const { signToken } = require('../../Utils/JWTGenerator'); 
 
-const loginAdmin = async (req, res) => {
+const LoginAdmin = async (req, res) => {
     try {
         const { userName, password } = req.body;
 
@@ -34,4 +34,4 @@ const loginAdmin = async (req, res) => {
 };
 
 
-module.exports = { loginAdmin };
+module.exports = { LoginAdmin };
