@@ -34,28 +34,27 @@ const updateTimeTable = catchAsync(async (req, res) => {
     const { department, semester, section } = req.body;
     const timetable = await TimeTable.findById(id);
     if (!timetable) {
-        return res.status(404).json({ message: 'Timetable not Found' });
+      return res.status(404).json({ message: 'Timetable not Found' });
     }
     if (department) timetable.department = department;
     if (semester) timetable.semester = semester;
     if (section) timetable.section = section;
     if (req.file) {
-        if (timetable.publicId) {
-            await cloudinary.uploader.destroy(timetable.publicId, { resource_type: 'auto' });
-        }
-        const result = await cloudinary.uploader.upload(req.file.path, {
-            folder: 'timetables',
-            resource_type: 'auto',
-        });
-        fs.unlinkSync(req.file.path);
-        timetable.fileUrl = result.secure_url;
-        timetable.publicId = result.public_id;
+      if (timetable.publicId) {
+        await cloudinary.uploader.destroy(timetable.publicId, { resource_type: 'raw' });
+      }
+      const result = await cloudinary.uploader.upload(req.file.path, {
+        folder: 'timetables',
+        resource_type: 'raw',
+      });
+      fs.unlinkSync(req.file.path);
+      timetable.fileUrl = result.secure_url;
+      timetable.publicId = result.public_id;
     }
     await timetable.save();
-    console.log(JSON.stringify(timetable, null, 2));
     res.status(200).json({
-        message: 'Timetable updated successfully',
-        timeTable: timetable,
+      message: 'Timetable updated successfully',
+      timeTable: timetable.toObject(),
     });
 });
 
