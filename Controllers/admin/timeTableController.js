@@ -3,6 +3,7 @@ const cloudinary = require('../../Config/cloudinary.js');
 const catchAsync = require('../../Utils/catchAsynch.js');
 const fs = require('fs');
 
+//upload timetable
 const uploadTimeTable = catchAsync(async (req, res) => {
     const { department, semester, section } = req.body;
     const filePath = req.file.path;
@@ -27,4 +28,35 @@ const uploadTimeTable = catchAsync(async (req, res) => {
     });
 });
 
-module.exports = { uploadTimeTable };
+//update timetable
+const updateTimeTable = catchAsync(async (req, res) => {
+    const { id } = req.params;
+    const { department, semester, section } = req.body;
+    const timetable = await TimeTable.findById(id);
+    if (!timetable) {
+        return res.status(404).json({ message: 'Timetable not Found' });
+    }
+    if (department) timetable.department = department;
+    if (semester) timetable.semester = semester;
+    if (section) timetable.section = section;
+    if (req.file) {
+        if (timetable.publicId) {
+            await cloudinary.uploader.destroy(timetable.publicId, { resource_type: 'auto' });
+        }
+        const result = await cloudinary.uploader.upload(req.file.path, {
+            folder: 'timetables',
+            resource_type: 'auto',
+        });
+        fs.unlinkSync(req.file.path);
+        timetable.fileUrl = result.secure_url;
+        timetable.publicId = result.public_id;
+    }
+    await timetable.save();
+    console.log(JSON.stringify(timetable, null, 2));
+    res.status(200).json({
+        message: 'Timetable updated successfully',
+        timeTable: timetable,
+    });
+});
+
+module.exports = { uploadTimeTable, updateTimeTable };
