@@ -58,4 +58,20 @@ const updateTimeTable = catchAsync(async (req, res) => {
     });
 });
 
-module.exports = { uploadTimeTable, updateTimeTable };
+//Delete Timetable
+const deleteTimeTable = catchAsync (async (req, res) => {
+  const { id } = req.params;
+  const timetable = await TimeTable.findById(id);
+  if(!timetable) {
+    return res.status(404).json({ message: "Timetable not Found!"});
+  }
+  if (timetable.publicId) {
+    await cloudinary.uploader.destroy(timetable.publicId, { resource_type: 'raw'});
+  }
+  await timetable.deleteOne();
+  res.status(200).json({
+    message: "Timetable deleted successfully!"
+  });
+}) ;
+
+module.exports = { uploadTimeTable, updateTimeTable, deleteTimeTable };
