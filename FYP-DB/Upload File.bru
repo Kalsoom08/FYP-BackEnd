@@ -5,11 +5,14 @@ meta {
 }
 
 post {
-  url: http://localhost:7000/api/upload
+  url: http://localhost:7000/api/admin/timetable
   body: multipartForm
   auth: inherit
 }
 
 body:multipart-form {
-  file: @file(C:\Users\kalso\Documents\Eng.pdf)
+  file: @file(C:\Users\kalso\Pictures\Screenshots\Screenshot 2025-03-18 161724.png)
+  department: IBMS
+  semester: 7th
+  section: B
 }
