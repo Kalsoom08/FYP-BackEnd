@@ -8,6 +8,7 @@ const clodinaryRoute = require('./Routes/admin/cloudinary.js');
 const adminTimetableRoute = require('./Routes/admin/timeTableRoute.js');
 const publicTimetableRoute = require('./Routes/public/timeTableRoute.js');
 const notificationRoute = require('./Routes/admin/notificationsRoute.js')
+const publicNotificationRoute= require('./Routes/public/notificationsRoute.js')
 require('dotenv').config();
 connectDB();
 
@@ -24,6 +25,7 @@ app.use('/api/admin', authRoutes);
 app.use('/api/admin', adminTimetableRoute);
 app.use('/api/public', publicTimetableRoute);
 app.use('/api/admin', notificationRoute)
+app.use("/api/public", publicNotificationRoute);
 
 const port = process.env.PORT;
 app.listen(port, () => console.log(`http://localhost:${port} is now running`));
