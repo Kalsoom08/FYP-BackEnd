@@ -24,7 +24,7 @@ const uploadNotification = catchAsync(async (req, res) => {
       publicId = result.public_id;
       fs.unlinkSync(filePath);
     } catch (uploadErr) {
-      if (fs.existsSync(filePath)) fs.unlinkSync(filePath); // ✅ Clean up
+      if (fs.existsSync(filePath)) fs.unlinkSync(filePath); 
       return res.status(500).json({
         message: "Cloudinary upload failed",
         error: uploadErr.message,
@@ -96,7 +96,7 @@ const deleteNotification = catchAsync(async (req, res) => {
   await Notifications.findByIdAndDelete(id); 
 
   res.status(200).json({
-    message: "Notification deleted successfully!",
+    message: "Notification Deleted successfully!",
   });
 });
 
