@@ -23,7 +23,7 @@ app.use('/api/admin', authRoutes);
 // app.use('/api', clodinaryRoute);
 app.use('/api/admin', adminTimetableRoute);
 app.use('/api/public', publicTimetableRoute);
-app.use('/api', notificationRoute)
+app.use('/api/admin', notificationRoute)
 
 const port = process.env.PORT;
 app.listen(port, () => console.log(`http://localhost:${port} is now running`));

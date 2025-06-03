@@ -16,8 +16,9 @@ const notificationSchema = new mongoose.Schema({
     },
         fileUrl: {
         type: String,
-        required: true
     },
+    publicId: 
+    { type: String }
     },
     {
         timestamps : true

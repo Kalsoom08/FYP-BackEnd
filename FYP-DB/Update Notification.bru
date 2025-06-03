@@ -5,7 +5,15 @@ meta {
 }
 
 put {
-  url: http://localhost:7000/api/admin/notification
-  body: none
+  url: http://localhost:7000/api/admin/notification/683f2716d0063a7fb0cd1539
+  body: multipartForm
   auth: inherit
+}
+
+headers {
+  Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4M2M3OWI1N2ZjOTBmZmU3MjlhZmY1ZSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0ODk2ODkyNSwiZXhwIjoxNzQ5ODMyOTI1fQ.WhYDiQ1r9YaQ9npDTSrpZXaRuSgjzJrz2m5bfEt0eKs
+}
+
+body:multipart-form {
+  type: events
 }
