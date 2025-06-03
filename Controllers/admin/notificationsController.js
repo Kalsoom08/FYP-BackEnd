@@ -22,11 +22,32 @@ const uploadNotification = catchAsync(async (req, res) => {
     type,
     fileUrl, 
   });
-
-  res.status(201).json({
+ res.status(201).json({
     message: 'Notification Uploaded Successfully',
     notification: newNotification,
   });
 });
 
-module.exports = { uploadNotification };
+ 
+
+ 
+const updateNotification = catchAsync(async(req, res)=>{
+  const {id} = req.params;
+  let update = req.body;
+  const filePath = req.file?.path;
+  
+  if(req.file){
+    const result = await cloudinary.uploader.upload(filePath, {
+      folder: 'notifications',
+    })
+    update = result.secure_url;
+  }
+
+  const updateInDB = await Notifications.findByIdAndUpdate(id, update, {new: true})
+
+    res.status(201).json({
+    message: 'Notification Updated Successfully',
+    notification: updateInDB,
+  });
+})
+module.exports = { uploadNotification, updateNotification };
