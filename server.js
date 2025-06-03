@@ -18,7 +18,7 @@ app.use(express.json());
 
 
 app.use('/api/admin', authRoutes);
-app.use('/api', clodinaryRoute);
+// app.use('/api', clodinaryRoute);
 app.use('/api', timetableROute);
 
 const port = process.env.PORT;

@@ -1,0 +1,18 @@
+meta {
+  name: Update File
+  type: http
+  seq: 3
+}
+
+put {
+  url: http://localhost:7000/api/admin/timetable/683d61dfc2ed537b484ec4f3
+  body: multipartForm
+  auth: inherit
+}
+
+body:multipart-form {
+  section: Z
+  semester: 8
+  department: IBMS
+  file: @file(C:\Users\kalso\Documents\Islam.pdf)
+}
