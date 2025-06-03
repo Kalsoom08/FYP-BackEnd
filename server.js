@@ -6,6 +6,7 @@ const { connectDB } = require('./Config/db.js');
 const authRoutes = require('./Routes/admin/authRoute.js')
 const clodinaryRoute = require('./Routes/admin/cloudinary.js');
 const timetableROute = require('./Routes/admin/timeTableRoute.js');
+const notificationRoute = require('./Routes/admin/notificationsRoute.js')
 require('dotenv').config();
 connectDB();
 
@@ -20,6 +21,7 @@ app.use(express.json());
 app.use('/api/admin', authRoutes);
 // app.use('/api', clodinaryRoute);
 app.use('/api', timetableROute);
+app.use('/api', notificationRoute)
 
 const port = process.env.PORT;
 app.listen(port, () => console.log(`http://localhost:${port} is now running`));
