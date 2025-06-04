@@ -3,9 +3,12 @@ const router = express.Router()
 const upload = require('../../Middleware/cloudinary')
 const verify = require('../../Middleware/verifyAdminMiddleware')
 const restrictTo = require('../../Middleware/restrictToMiddleware')
-const {uploadNotes} = require('../../Controllers/admin/notesController')
+const {uploadNotes,updateNotes, deleteNotes} = require('../../Controllers/admin/notesController')
+
 
 router.post('/notes', verify, restrictTo('admin'), upload.single('file'), uploadNotes)
+router.put('/notes/:id', verify, restrictTo('admin'), upload.single('file'), updateNotes)
+router.delete('/notes/:id', verify, restrictTo('admin'), upload.single('file'), deleteNotes)
 
 module.exports = router
 

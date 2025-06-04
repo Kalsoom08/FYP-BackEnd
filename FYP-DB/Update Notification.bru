@@ -5,15 +5,16 @@ meta {
 }
 
 put {
-  url: http://localhost:7000/api/admin/notification/683f2716d0063a7fb0cd1539
+  url: http://localhost:7000/api/admin/notification/683fe735c75da55629cf0279
   body: multipartForm
   auth: inherit
 }
 
 headers {
-  Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4M2M3OWI1N2ZjOTBmZmU3MjlhZmY1ZSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0ODk2ODkyNSwiZXhwIjoxNzQ5ODMyOTI1fQ.WhYDiQ1r9YaQ9npDTSrpZXaRuSgjzJrz2m5bfEt0eKs
+  Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4M2M3OWI1N2ZjOTBmZmU3MjlhZmY1ZSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0OTAxODY1NywiZXhwIjoxNzQ5ODgyNjU3fQ.Q34sncawoJL2uNPG0skDnKPnFIrJd9QlqeNNWf70lbM
 }
 
 body:multipart-form {
   type: events
+  file: @file(D:\University\6th Semester\PHP\PHP.pdf)
 }

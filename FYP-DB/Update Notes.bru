@@ -1,0 +1,23 @@
+meta {
+  name: Update Notes
+  type: http
+  seq: 10
+}
+
+put {
+  url: http://localhost:7000/api/admin/notes/683fe073be137b6a6216cabd
+  body: multipartForm
+  auth: inherit
+}
+
+params:query {
+  : 
+}
+
+headers {
+  Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4M2M3OWI1N2ZjOTBmZmU3MjlhZmY1ZSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0OTAzMDcwMCwiZXhwIjoxNzQ5ODk0NzAwfQ.eml90RpQqf7K3-7RWSfFh8UJFLJO-7Qkf6cgLcNNpzs
+}
+
+body:multipart-form {
+  file: @file(D:\University\6th Semester\Wireless\5-Highlights.pdf)
+}

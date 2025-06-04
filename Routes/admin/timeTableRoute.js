@@ -9,6 +9,6 @@ const router = express.Router();
 
 router.post('/timetable', verify, restrictTo('admin'), upload.single('file'), uploadTimeTable);
 router.put('/timetable/:id', verify, restrictTo('admin'), upload.single('file'), updateTimeTable);
-router.delete('/timetable/:id', verify, restrictTo('admin'), upload.single('file'), deleteTimeTable);
+router.delete('/timetable/:id', verify, restrictTo('admin'), deleteTimeTable);
 
 module.exports = router;
