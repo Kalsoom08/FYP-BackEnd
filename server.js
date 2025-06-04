@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
 const { connectDB } = require('./Config/db.js');
+//Routes
 const authRoutes = require('./Routes/admin/authRoute.js')
 const clodinaryRoute = require('./Routes/admin/cloudinary.js');
 const adminTimetableRoute = require('./Routes/admin/timeTableRoute.js');
