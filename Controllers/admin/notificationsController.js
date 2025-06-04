@@ -47,56 +47,66 @@ const uploadNotification = catchAsync(async (req, res) => {
 });
 
 const updateNotification = catchAsync(async (req, res) => {
+  const {title, description, type} = req.body
   const { id } = req.params;
-  const notification = await Notifications.findById(id);
+  
 
+  const notification = await Notifications.findById(id);
   if (!notification) {
-    return res.status(404).json({ message: "Notification not found!" });
+    return res.status(404).json({ message: 'notification not found!' });
   }
 
-  const updates = { ...req.body };
+  if (title) notification.title = title;
+  if (description) notification.description = description;
+  if (type) notification.type = type;
 
   if (req.file) {
+    const filePath = req.file.path;
+
     if (notification.publicId) {
-      await cloudinary.uploader.destroy(notification.publicId, { resource_type: 'auto' });
+      await cloudinary.uploader.destroy(notification.publicId, {
+        resource_type: 'raw',
+      });
     }
 
-    const result = await cloudinary.uploader.upload(req.file.path, {
+    const result = await cloudinary.uploader.upload(filePath, {
       folder: 'notifications',
-      resource_type: 'auto',
+      resource_type: 'raw',
     });
 
-    updates.fileUrl = result.secure_url;
-    updates.publicId = result.public_id;
-
-    fs.unlinkSync(req.file.path);
+    fs.unlinkSync(filePath);
+    notification.fileUrl = result.secure_url;
+    notification.publicId = result.public_id;
   }
 
-  const updatedNotification = await Notifications.findByIdAndUpdate(id, updates, { new: true });
+  await notification.save();
 
   res.status(200).json({
-    message: 'Notification Updated Successfully',
-    notification: updatedNotification,
+    message: 'notification updated successfully',
+    notification: notification.toObject(),
   });
 });
 
 
+
 const deleteNotification = catchAsync(async (req, res) => {
   const { id } = req.params;
-  const notification = await Notifications.findById(id);
 
+  const notification = await Notifications.findById(id);
   if (!notification) {
-    return res.status(404).json({ message: "Notification not Found!" });
+    return res.status(404).json({ message: 'Notification not found!' });
   }
 
   if (notification.publicId) {
-    await cloudinary.uploader.destroy(notification.publicId, { resource_type: 'auto' });
+    await cloudinary.uploader.destroy(notification.publicId, {
+      resource_type: 'raw',
+    });
   }
 
-  await Notifications.findByIdAndDelete(id); 
+  await Notifications.findByIdAndDelete(id);
 
   res.status(200).json({
-    message: "Notification Deleted successfully!",
+    message: 'Notification deleted successfully',
   });
 });
 
