@@ -1,9 +1,0 @@
-{
-  "version": "1",
-  "name": "FYP",
-  "type": "collection",
-  "ignore": [
-    "node_modules",
-    ".git"
-  ]
-}
