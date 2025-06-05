@@ -12,6 +12,7 @@ const adminNotificationRoute = require('./Routes/admin/notificationsRoute.js')
 const publicNotificationRoute = require('./Routes/public/notificationsRoute.js')
 const adminNotesRoute = require('./Routes/admin/notesRoute.js')
 const publicNotesRoute = require('./Routes/public/notesRoute.js')
+const adminRollnumberRoute = require('./Routes/admin/rollNumberRoutes.js')
 require('dotenv').config();
 connectDB();
 
@@ -31,6 +32,9 @@ app.use('/api/admin', adminNotificationRoute)
 app.use('/api/public', publicNotificationRoute)
 app.use('/api/admin', adminNotesRoute)
 app.use('/api/public', publicNotesRoute)
+app.use('/api/admin', adminRollnumberRoute)
+
+
 
 const port = process.env.PORT;
 app.listen(port, () => console.log(`http://localhost:${port} is now running`));
