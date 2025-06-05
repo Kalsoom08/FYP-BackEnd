@@ -12,6 +12,7 @@ const adminNotificationRoute = require('./Routes/admin/notificationsRoute.js');
 const adminNotesRoute = require('./Routes/admin/notesRoute.js');
 const adminRollnumberRoute = require('./Routes/admin/rollNumberRoutes.js');
 const adminDatesheetRoute = require('./Routes/admin/dateSheetRoutes.js');
+const adminResultRoutes = require('./Routes/admin/resultRoutes.js') 
 //Public Routes
 const publicNotesRoute = require('./Routes/public/notesRoute.js')
 const publicTimetableRoute = require('./Routes/public/timeTableRoute.js');
@@ -35,6 +36,7 @@ app.use('/api/admin', adminNotificationRoute);
 app.use('/api/admin', adminNotesRoute);
 app.use('/api/admin', adminRollnumberRoute);
 app.use('/api/admin', adminDatesheetRoute);
+app.use('/api/admin', adminResultRoutes);
 //public
 app.use('/api/public', publicTimetableRoute);
 app.use('/api/public', publicNotificationRoute);
