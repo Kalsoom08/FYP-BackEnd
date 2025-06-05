@@ -6,6 +6,17 @@ meta {
 
 post {
   url: http://localhost:7000/api/admin/notes
-  body: none
+  body: multipartForm
   auth: inherit
+}
+
+headers {
+  Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4M2M3OWI1N2ZjOTBmZmU3MjlhZmY1ZSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc0OTA1MDQ4NywiZXhwIjoxNzQ5OTE0NDg3fQ.5DL_RvZiFhb1BCiDJCpR4roXevRymoXEflnGUKYEHuI
+}
+
+body:multipart-form {
+  subject: DB
+  semester: 7th
+  department: IT
+  file: @file(D:\University\6th Semester\Wireless\6-Highlights.pdf)
 }
