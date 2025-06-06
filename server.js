@@ -10,14 +10,12 @@ const adminTimetableRoute = require('./Routes/admin/timeTableRoute.js');
 const publicTimetableRoute = require('./Routes/public/timeTableRoute.js');
 const adminNotificationRoute = require('./Routes/admin/notificationsRoute.js')
 const publicNotificationRoute = require('./Routes/public/notificationsRoute.js')
-<<<<<<< Updated upstream
 const adminNotesRoute = require('./Routes/admin/notesRoute.js')
 const publicNotesRoute = require('./Routes/public/notesRoute.js')
 const adminRollnumberRoute = require('./Routes/admin/rollNumberRoutes.js')
-=======
-const publicDatesheetRoute = require('./Routes/public/datesheetRoutes.js');
+// const publicDatesheetRoute = require('./Routes/public/datesheetRoutes.js');
 const publicRollnumberRoute = require('./Routes/public/rollNumberRoute.js')
->>>>>>> Stashed changes
+
 require('dotenv').config();
 connectDB();
 
