@@ -10,9 +10,14 @@ const adminTimetableRoute = require('./Routes/admin/timeTableRoute.js');
 const publicTimetableRoute = require('./Routes/public/timeTableRoute.js');
 const adminNotificationRoute = require('./Routes/admin/notificationsRoute.js')
 const publicNotificationRoute = require('./Routes/public/notificationsRoute.js')
+<<<<<<< Updated upstream
 const adminNotesRoute = require('./Routes/admin/notesRoute.js')
 const publicNotesRoute = require('./Routes/public/notesRoute.js')
 const adminRollnumberRoute = require('./Routes/admin/rollNumberRoutes.js')
+=======
+const publicDatesheetRoute = require('./Routes/public/datesheetRoutes.js');
+const publicRollnumberRoute = require('./Routes/public/rollNumberRoute.js')
+>>>>>>> Stashed changes
 require('dotenv').config();
 connectDB();
 
@@ -28,11 +33,19 @@ app.use('/api/admin', authRoutes);
 // app.use('/api', clodinaryRoute);
 app.use('/api/admin', adminTimetableRoute);
 app.use('/api/public', publicTimetableRoute);
+<<<<<<< Updated upstream
 app.use('/api/admin', adminNotificationRoute)
 app.use('/api/public', publicNotificationRoute)
 app.use('/api/admin', adminNotesRoute)
 app.use('/api/public', publicNotesRoute)
 app.use('/api/admin', adminRollnumberRoute)
+=======
+app.use('/api/public', publicNotificationRoute);
+app.use('/api/public', publicNotesRoute);
+app.use('/api/public', publicDatesheetRoute);
+app.use('/api/public', publicRollnumberRoute)
+
+>>>>>>> Stashed changes
 
 
 
