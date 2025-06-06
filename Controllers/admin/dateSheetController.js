@@ -56,5 +56,20 @@ const updateDateSheet = catchAsync(async (req, res) => {
     });
 });
 
+//Delete Datesheet
+const deleteDateSheet = catchAsync (async (req, res) => {
+  const { id } = req.params;
+  const datesheet = await DateSheet.findById(id);
+  if(!datesheet) {
+    return res.status(404).json({ message: "Datesheet not Found!"});
+  }
+  if (datesheet.publicId) {
+    await cloudinary.uploader.destroy(datesheet.publicId, { resource_type: 'raw'});
+  }
+  await datesheet.deleteOne();
+  res.status(200).json({
+    message: "Datesheet deleted successfully!"
+  });
+}) ;
 
-module.exports = { uploadDateSheet, updateDateSheet };
+module.exports = { uploadDateSheet, updateDateSheet, deleteDateSheet };
