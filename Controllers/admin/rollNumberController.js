@@ -52,4 +52,22 @@ const uploadRollNumbers = catchAsync(async (req, res) => {
   });
 });
 
-module.exports = { uploadRollNumbers };
+
+const updateRollNumber = catchAsync(async (req, res) => {
+  const updated = await RollNumber.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true,
+  });
+  if (!updated) return res.status(404).json({ message: 'Roll number not found' });
+  res.status(200).json({ message: 'Updated successfully', data: updated });
+});
+
+
+const deleteRollNumber = catchAsync(async (req, res) => {
+  const deleted = await RollNumber.findByIdAndDelete(req.params.id);
+  if (!deleted) return res.status(404).json({ message: 'Roll number not found' });
+  res.status(200).json({ message: 'Deleted successfully' });
+});
+
+
+module.exports = { uploadRollNumbers,updateRollNumber, deleteRollNumber };
