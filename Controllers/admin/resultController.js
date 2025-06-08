@@ -51,4 +51,57 @@ const uploadResultFromXlsx = catchAsync(async (req, res) => {
   });
 });
 
-module.exports = { uploadResultFromXlsx };
+const getAllResults = catchAsync( async (req, res) => {
+  const { semester, department, section } = req.query;
+  const query = {};
+  if (semester) query.semester = semester;
+  if (department) query.department = department;
+  if (section) query.section = section;
+  const results = await Result.find(query);
+  res.status(200).json({
+    total: results.length,
+    results
+  });
+});
+
+const getResultById = catchAsync(async (req, res) => {
+  const result = await Result.findById(req.params.id);
+  if(!result) return res.status(404).json({ message: "Result for this ID is not Found" });
+  res.status(200).json(result);
+});
+
+const updateResultById = catchAsync(async (req, res) => {
+  const updated = await Result.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true,
+  });
+  if(!updated) return res.status(404).json({ message: "Result not Found for this ID"});
+  res.status(200).json({
+    message: "Result Updated Successfully",
+    updated,
+  });
+});
+
+const deleteResultById = catchAsync(async (req, res) => {
+  const deleted = await Result.findByIdAndDelete(req.params.id);
+  if(!deleted) return res.status(404).json({ message: "Result not Found!" });
+  res.status(200).json({ message: "Result Deleted Successfully" });
+});
+const deleteResultByQuery = catchAsync(async (req, res) => {
+  const { semester, department, section } = req.query;
+  if (!semester || !department || !section ) {
+    return res.status(404).json({ message: "Missing Required filters" });
+  }
+  const deleted = await Result.deleteMany({ semester, department, section });
+  res.status(200).json({
+    message: "Filtered Results deleted Successfully",
+    dletedCount: deleted.deletedCount,
+  });
+});
+
+module.exports = { uploadResultFromXlsx,
+  getAllResults,
+  getResultById, 
+  updateResultById, 
+  deleteResultById, 
+  deleteResultByQuery };
