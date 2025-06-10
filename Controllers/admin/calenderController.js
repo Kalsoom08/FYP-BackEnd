@@ -30,4 +30,20 @@ const uploadCalender = catchAsync(async(req, res)=>{
     })
 })
 
-module.exports = {uploadCalender}
+
+const updateCalender = catchAsync(async(req, res)=>{
+     const updated = await Calender.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+        runValidators: true,
+      });
+      if (!updated) return res.status(404).json({ message: 'Calender not found' });
+      res.status(200).json({ message: 'Updated successfully', data: updated });
+})
+
+
+const deleteCalender = catchAsync(async (req, res) => {
+  const deleted = await Calender.findByIdAndDelete(req.params.id);
+  if (!deleted) return res.status(404).json({ message: 'Calender not found' });
+  res.status(200).json({ message: 'Deleted successfully' });
+});
+module.exports = {uploadCalender, updateCalender, deleteCalender}
