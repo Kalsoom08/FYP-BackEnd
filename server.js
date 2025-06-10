@@ -1,7 +1,5 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const cors = require('cors');
-const path = require('path');
 const { connectDB } = require('./Config/db.js');
 //Routes
 //admin Routes
@@ -33,23 +31,22 @@ app.use(express.json());
 
 
 //admin
-app.use('/api/admin', authRoutes);
-// app.use('/api', clodinaryRoute);
-app.use('/api/admin', adminTimetableRoute);
-app.use('/api/admin', adminNotificationRoute);
-app.use('/api/admin', adminNotesRoute);
-app.use('/api/admin', adminRollnumberRoute);
-app.use('/api/admin', adminDatesheetRoute);
-app.use('/api/admin', adminResultRoutes);
-app.use('/api/admin', adminTopStudentRoutes);
-app.use('/api/admin', adminCalenderRoute)
+//app.use('/api/admin', authRoutes);
+// app.use('/api/admin', adminTimetableRoute);
+// app.use('/api/admin', adminNotificationRoute);
+// app.use('/api/admin', adminNotesRoute);
+// app.use('/api/admin', adminRollnumberRoute);
+// app.use('/api/admin', adminDatesheetRoute);
+// app.use('/api/admin', adminResultRoutes);
+// app.use('/api/admin', adminTopStudentRoutes);
+// app.use('/api/admin', adminCalenderRoute)
 //public
-app.use('/api/public', publicTimetableRoute);
-app.use('/api/public', publicNotificationRoute);
-app.use('/api/public', publicNotesRoute);
-app.use('/api/public', publicDatesheetRoute);
-app.use('/api/public', publicResultRoute);
-app.use('/api/public', publicCalenderRoute)
+// app.use('/api/public', publicTimetableRoute);
+// app.use('/api/public', publicNotificationRoute);
+// app.use('/api/public', publicNotesRoute);
+// app.use('/api/public', publicDatesheetRoute);
+// app.use('/api/public', publicResultRoute);
+// app.use('/api/public', publicCalenderRoute)
 
 
 
