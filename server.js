@@ -20,6 +20,7 @@ const publicTimetableRoute = require('./Routes/public/timeTableRoute.js');
 const publicNotificationRoute = require('./Routes/public/notificationsRoute.js')
 const publicDatesheetRoute = require('./Routes/public/datesheetRoutes.js');
 const publicResultRoute = require('./Routes/public/resultRoutes.js');
+const publicTopStudentsRoute = require('./Routes/public/topStudentsRoutes.js');
 require('dotenv').config();
 connectDB();
 
@@ -46,6 +47,7 @@ app.use('/api/public', publicNotificationRoute);
 app.use('/api/public', publicNotesRoute);
 app.use('/api/public', publicDatesheetRoute);
 app.use('/api/public', publicResultRoute);
+app.use('/api/public', publicTopStudentsRoute);
 
 
 
