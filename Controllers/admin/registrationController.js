@@ -40,8 +40,7 @@ const uploadRegistrationStatus = catchAsync(async (req, res) => {
   const sheet     = workbook.Sheets[sheetName];
   const rows      = xlsx.utils.sheet_to_json(sheet);
 
-  const registrationStatus = rows
-    .map((row) => {
+  const registrationStatus = rows.map((row) => {
       const regNumber = row.regNumber || row.RegNumber || row['Reg Number'] || '';
       const regStatus = row.isRegistered ?? row.IsRegistered ?? row.registered ?? '';
       return {
@@ -63,4 +62,23 @@ const uploadRegistrationStatus = catchAsync(async (req, res) => {
   });
 });
 
-module.exports = { uploadRegistrationStatus };
+
+
+const updateRegistrationStatus = catchAsync(async(req, res)=>{
+  const updated = await Registration.findByIdAndUpdate(req.params.id, req.body,{
+    new: true,
+    runValidators: true
+  })
+  if(!updated) return res.status(404).json({ message: 'Registration not found' });
+
+  res.status(200).json({message: 'Updated Successfully', data : updated})
+})
+
+
+const deleteRegistrationStatus = catchAsync(async(req, res)=>{
+  const deleted = await Registration.findByIdAndDelete(req.params.id)
+  if(!deleted) return res.status(404).json({ message: 'Registration not found' });
+  res.status(200).json({ message: 'Deleted successfully' });
+})
+
+module.exports = { uploadRegistrationStatus, updateRegistrationStatus, deleteRegistrationStatus };
