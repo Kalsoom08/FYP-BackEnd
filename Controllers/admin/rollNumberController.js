@@ -26,7 +26,7 @@ const uploadRollNumbers = catchAsync(async (req, res) => {
     workbook = xlsx.read(fileBuffer, { type: 'buffer' });
   } catch (err) {
     fs.unlinkSync(req.file.path);
-    return res.status(400).json({ message: 'Failed to parse Excel file. Make sure the file is valid.' });
+    return res.status(400).json({ message: 'Failed to parse Excel file. Make sure the  file is valid.' });
   }
 
   const sheetName = workbook.SheetNames[0];
