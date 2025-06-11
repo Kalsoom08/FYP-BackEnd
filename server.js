@@ -22,6 +22,7 @@ const publicNotificationRoute = require('./Routes/public/notificationsRoute.js')
 const publicDatesheetRoute = require('./Routes/public/datesheetRoutes.js');
 const publicResultRoute = require('./Routes/public/resultRoutes.js');
 const publicTopStudentsRoute = require('./Routes/public/topStudentsRoutes.js');
+const publicRenewalSlipRoute = require('./Routes/public/renewalSlipRoutes.js');
 require('dotenv').config();
 connectDB();
 
@@ -50,6 +51,7 @@ app.use('/api/public', publicNotesRoute);
 app.use('/api/public', publicDatesheetRoute);
 app.use('/api/public', publicResultRoute);
 app.use('/api/public', publicTopStudentsRoute);
+app.use('/api/public', publicRenewalSlipRoute);
 
 
 
