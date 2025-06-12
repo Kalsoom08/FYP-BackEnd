@@ -1,0 +1,18 @@
+meta {
+  name: Update Software
+  type: http
+  seq: 24
+}
+
+put {
+  url: http://localhost:7000/api/admin/software/684a69bc4247012b6040f545
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "platforms": ["Windows", "Mac"]
+  }
+  
+}
