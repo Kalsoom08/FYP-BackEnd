@@ -1,0 +1,28 @@
+meta {
+  name: Upload Software
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:7000/api/admin/software
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "Vmware",
+    "version": "109.9",
+    "platforms": ["Windows"],
+    "downloadFileUrl": "https://code.visualstudio.com/download"
+  }
+  
+}
+
+body:multipart-form {
+  name: VS-Code
+  version: 109.9
+  platform: ["Windows"]
+  downloadFileUrl: https://code.visualstudio.com/sha/download?build=stable&os=win32-x64-user
+}
