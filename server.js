@@ -15,6 +15,8 @@ const adminDatesheetRoute = require('./Routes/admin/dateSheetRoutes.js');
 const adminResultRoutes = require('./Routes/admin/resultRoutes.js');
 const adminTopStudentRoutes = require('./Routes/admin/topStudentRoute.js'); 
 const adminRenewalSLipRoutes = require('./Routes/admin/renewalSlipRoutes.js');
+const adminRegistrationStatusRoute = require('./Routes/admin/registrationRoutes.js');
+const adminMapRoutes = require('./Routes/admin/mapRoutes.js');
 //Public Routes
 const publicNotesRoute = require('./Routes/public/notesRoute.js')
 const publicTimetableRoute = require('./Routes/public/timeTableRoute.js');
@@ -23,6 +25,8 @@ const publicDatesheetRoute = require('./Routes/public/datesheetRoutes.js');
 const publicResultRoute = require('./Routes/public/resultRoutes.js');
 const publicTopStudentsRoute = require('./Routes/public/topStudentsRoutes.js');
 const publicRenewalSlipRoute = require('./Routes/public/renewalSlipRoutes.js');
+const publicRegistrationStatusRoute = require('./Routes/public/registrationRoutes.js');
+const publicMapRoute = require('./Routes/public/mapRoutes.js');
 require('dotenv').config();
 connectDB();
 
@@ -44,6 +48,9 @@ app.use('/api/admin', adminDatesheetRoute);
 app.use('/api/admin', adminResultRoutes);
 app.use('/api/admin', adminTopStudentRoutes);
 app.use('/api/admin', adminRenewalSLipRoutes);
+app.use('/api/admin', adminRegistrationStatusRoute);
+app.use('/api/admin', adminMapRoutes);
+
 //public
 app.use('/api/public', publicTimetableRoute);
 app.use('/api/public', publicNotificationRoute);
@@ -52,9 +59,8 @@ app.use('/api/public', publicDatesheetRoute);
 app.use('/api/public', publicResultRoute);
 app.use('/api/public', publicTopStudentsRoute);
 app.use('/api/public', publicRenewalSlipRoute);
-
-
-
+app.use('/api/public', publicRegistrationStatusRoute);
+app.use('/api/public', publicMapRoute);
 
 const port = process.env.PORT;
 app.listen(port, () => console.log(`http://localhost:${port} is now running`));
