@@ -1,0 +1,15 @@
+meta {
+  name: Update Subject
+  type: http
+  seq: 4
+}
+
+put {
+  url: http://localhost:7000/api/admin/subject/684bc9cb60333e2deec737d4
+  body: multipartForm
+  auth: inherit
+}
+
+body:multipart-form {
+  semester: 5th
+}

@@ -1,0 +1,18 @@
+meta {
+  name: Upload Subject
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:7000/api/admin/subject
+  body: multipartForm
+  auth: inherit
+}
+
+body:multipart-form {
+  title: kjssh
+  description: kjkdbbj
+  semester: 1st
+  file: @file(C:\Users\kalso\Documents\Eng.pdf)
+}
