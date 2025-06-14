@@ -22,6 +22,7 @@ const adminSoftwaresRoute = require('./Routes/admin/softwareRoutes.js')
 const adminSubjectRoute = require('./Routes/admin/subjectContentRoutes.js')
 const adminTimetableRoute = require('./Routes/admin/timeTableRoute.js')
 const adminTopstudentsRoute = require('./Routes/admin/topStudentRoute.js')
+const adminHallStatmentRoute = require('./Routes/admin/hallStatmentRoutes.js')
 
 
 //Public Routes
@@ -38,6 +39,7 @@ const publicSoftwaresRoute = require('./Routes/public/softwareRoutes.js')
 const publicSubjectRoute = require('./Routes/public/subjectContentRoutes.js')
 const publicTimetableRoute = require('./Routes/public/timeTableRoute.js')
 const publicTopstudentsRoute = require('./Routes/public/topStudentsRoutes.js')
+const publicHallStatmentROute = require('./Routes/public/hallStatmentRoutes.js')
 
 //Admin API's
 app.use('/api/admin', authRoute )
@@ -54,6 +56,7 @@ app.use('/api/admin', adminSoftwaresRoute)
 app.use('/api/admin', adminSubjectRoute)
 app.use('/api/admin', adminTimetableRoute)
 app.use('/api/admin', adminTopstudentsRoute)
+app.use('/api/admin', adminHallStatmentRoute)
 
 
 //Public API's
@@ -71,6 +74,7 @@ app.use('/api/public', publicSoftwaresRoute)
 app.use('/api/public', publicSubjectRoute)
 app.use('/api/public', publicTimetableRoute)
 app.use('/api/public', publicTopstudentsRoute)
+app.use('/api/public', publicHallStatmentROute)
 
 const port = process.env.PORT;
 app.listen(port, () => console.log(`http://localhost:${port} is now running`));

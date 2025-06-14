@@ -28,6 +28,26 @@ const uploadTimeTable = catchAsync(async (req, res) => {
     });
 });
 
+//Get All timetables 
+const getAllTimeTables = catchAsync(async (req, res) => {
+  const timeTables = await TimeTable.find().sort({ createdAt: -1 });
+  res.status(200).json({
+    message: "All timetables fetched successfully.",
+    count: timeTables.length,
+    data: timeTables,
+  });
+});
+
+//Get timetable by Id
+const getTimeTableById = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const timetable = await TimeTable.findById(id);
+  if (!timetable) {
+    return res.status(404).json({ message: "Timetable not found." });
+  }
+  res.status(200).json({ data: timetable });
+});
+
 //update timetable
 const updateTimeTable = catchAsync(async (req, res) => {
     const { id } = req.params;
@@ -74,4 +94,4 @@ const deleteTimeTable = catchAsync (async (req, res) => {
   });
 }) ;
 
-module.exports = { uploadTimeTable, updateTimeTable, deleteTimeTable };
+module.exports = { uploadTimeTable, updateTimeTable, deleteTimeTable, getAllTimeTables, getTimeTableById };

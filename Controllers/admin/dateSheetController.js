@@ -27,6 +27,26 @@ const uploadDateSheet = catchAsync(async (req, res) => {
   });
 });
 
+//Get Datesheets 
+const getAllDateSheets = catchAsync(async (req, res) => {
+  const dateSheets = await DateSheet.find().sort({ createdAt: -1 });
+  res.status(200).json({
+    message: "All Date Sheets fetched successfully",
+    count: dateSheets.length,
+    data: dateSheets,
+  });
+});
+
+//Get DateSheet By ID
+const getDateSheetById = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const dateSheet = await DateSheet.findById(id);
+  if (!dateSheet) {
+    return res.status(404).json({ message: "Date Sheet not found" });
+  }
+  res.status(200).json({ data: dateSheet });
+});
+
 //update dateSheet 
 const updateDateSheet = catchAsync(async (req, res) => {
     const { id } = req.params;
@@ -72,4 +92,4 @@ const deleteDateSheet = catchAsync (async (req, res) => {
   });
 }) ;
 
-module.exports = { uploadDateSheet, updateDateSheet, deleteDateSheet };
+module.exports = { uploadDateSheet, updateDateSheet, deleteDateSheet, getAllDateSheets, getDateSheetById  };
