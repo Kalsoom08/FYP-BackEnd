@@ -9,15 +9,20 @@ const getAllSubjects = catchAsync(async(req, res)=>{
   res.status(200).json({ data :  subject});
 })
 
-const getSubjectBySemester = catchAsync(async(req, res)=>{
-    const semester = req.params.semester;
-    const subject = await Subjects.find({ semester: { $regex: `^${semester}`, $options: 'i' } });
+const getSubjectBySemester = catchAsync(async (req, res) => {
+  const { semester, department } = req.params;
 
-    if (subject.length === 0) {
-    return res.status(404).json({ message: 'No Subject found for that semester' });
+  const subjects = await Subjects.find({
+    semester: { $regex: `^${semester}`, $options: 'i' },
+    department: { $regex: `^${department}`, $options: 'i' }
+  });
+
+  if (subjects.length === 0) {
+    return res.status(404).json({ message: 'No Subject found for that semester and department' });
   }
-  res.status(200).json({  data: subject });
 
-}) 
+  res.status(200).json({ data: subjects });
+});
+
 
 module.exports = {getAllSubjects, getSubjectBySemester}

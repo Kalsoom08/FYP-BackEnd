@@ -3,11 +3,19 @@ const catchAsync = require('../../Utils/catchAsynch')
 
 const getAllStudents = catchAsync(async (req, res) => {
   const students = await Registration.find();
-  if (!students) {
-    return res.status(404).json({ message: 'Student not found' });
+
+  if (!students || students.length === 0) {
+    return res.status(404).json({ message: 'No students found' });
   }
-  res.status(200).json({  students });
+
+  const studentsWithRemarks = students.map(student => ({
+    ...student.toObject(),
+    remarks: student.isRegistered ? 'Student is Registered' : 'Student is Not Registered',
+  }));
+
+  res.status(200).json({ students: studentsWithRemarks });
 });
+
 
 
 const getStudentByRegNumber = catchAsync(async (req, res) => {
