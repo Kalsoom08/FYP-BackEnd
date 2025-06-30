@@ -1,4 +1,4 @@
-const cloudinary = require('../../Config/cloudinary.js');
+ const cloudinary = require('../../Config/cloudinary.js');
 const catchAsync = require('../../Utils/catchAsynch.js');
 const Calender = require('../../Models/calenderModel.js')
 const fs = require('fs');
