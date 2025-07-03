@@ -15,4 +15,17 @@ const getTimeTable = catchAsync(async (req, res) => {
         timetables,
     });
 });
-module.exports = { getTimeTable };
+
+const getTimetableOptions = catchAsync(async (req, res) => {
+  const departments = await TimeTable.distinct('department');
+  const semesters = await TimeTable.distinct('semester');
+  const sections = await TimeTable.distinct('section');
+
+  res.status(200).json({
+    message: 'Options fetched successfully!',
+    departments,
+    semesters,
+    sections,
+  });
+});
+module.exports = { getTimeTable, getTimetableOptions };
